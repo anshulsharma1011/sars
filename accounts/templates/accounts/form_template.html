@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for field in form %}
+    <div>
+        <label for="{{ forloop.counter }}">{{ field.label_tag }}</label>
+        <div id="{{ forloop.counter }}" class="validate">{{ field }}</div>
+    </div>
+{% endfor %}
+</body>
+</html>

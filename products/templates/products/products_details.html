@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="{{ product.photo.url }}">
+<h1>{{ product.name }}</h1><br><br>
+MINIMUM QUANTITY - - {{ product.base_quantity }}{{ product.quantity_unit }}<br><br>
+RATE - - Rs.{{ product.rate }}
+
+{% if user.is_superuser %}
+<form action="{% url 'products:delete_product' product.id %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="product_id" value="{{ product.id }}"/>
+    <button type="submit">DELETE</button>
+</form>
+<a href="{% url 'products:update_product' product.id %}">UPDATE</a>
+{% endif %}
+</body>
+</html>

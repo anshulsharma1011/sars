@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>{% block title %}POLE POSITION{% endblock %}</title>
+    {% load staticfiles %}
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+    <link href="{% static 'accounts/assets/fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'accounts/assets/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'accounts/assets/css/custom.css' %}" rel="stylesheet">
+    <!--<link href="{% static 'accounts/assets/css/materialize.min.css' %}" rel="stylesheet">-->
+    <link href="{% static 'accounts/assets/css/materialize.css' %}" rel="stylesheet">
+    <!--<link href="{% static 'accounts/assets/css/bootstrap-theme.css' %}" rel="stylesheet">-->
+</head>
+<body>
+<!--<div id="preloader" class="preloading-screen">-->
+<!--<div>-->
+<!--<img src="{% static 'accounts/assets/images/preloader.gif' %}">-->
+<!--</div>-->
+<!--</div>-->
+<ul id="slide-out" class="side-nav">
+    <li><div class="user-view">
+        <div class="background">
+            <img src="images/office.jpg">
+        </div>
+        <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
+        <a href="#!name"><span class="white-text name">John Doe</span></a>
+        <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+    </div></li>
+    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+    <li><a href="#!">Second Link</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Subheader</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+</ul>
+
+{% if user.is_authenticated and request.user.is_superuser %}
+{% include 'accounts/admin.html' %}
+{% else %}
+<nav class="black">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only white-text menu-icon"><i class="material-icons">menu</i></a>
+        <a href="#" class="brand-logo">SARS PLASTICS</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#about">About</a> </li>
+            <li><a href="#team">Team</a> </li>
+            {% if request.user.is_authenticated %}
+            <li><a href="{% url 'accounts:profile_view' %}"> <i class="fa fa-user"></i>  Profile</a></li>
+            <li><a href="{% url 'accounts:logout' %}"> <i class="fa fa-sign-out"></i>  Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'accounts:login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+    <div class="row">
+        <div class="col l12 black">
+
+        </div>
+    </div>
+
+<div class="row"></div><div class="row"></div><div class="row"></div>
+<footer class="page-footer black">
+    <div class="footer-copyright">
+        <div class="container">
+            <h5 class="center">©Copyright, Powered By Open Source Software Research and Development Centre</h5>
+        </div>
+    </div>
+</footer>
+<a href="http://gazpo.com/downloads/tutorials/jquery/scrolltop/#" class="scrollup" style="display: none;"><img src="{% static 'accounts/assets/images/up.png' %}" class="hide-on-small-only up-button right"></a>
+{% endif %}
+<script>
+
+</script>
+<script src="{% static 'accounts/assets/js/jquery-3.2.1.min.js' %}"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{% static 'accounts/assets/js/materialize.js' %}"></script>
+<script src="{% static 'accounts/assets/js/custom.js' %}"></script>
+</body>
+</html>
+

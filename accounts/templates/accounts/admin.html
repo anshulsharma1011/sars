@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>{% block title %}POLE POSITION ADMIN{% endblock %}</title>
+    {% load staticfiles %}
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+    <link href="{% static 'accounts/assets/fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'accounts/assets/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'accounts/assets/css/custom.css' %}" rel="stylesheet">
+    <!--<link href="{% static 'accounts/assets/css/materialize.min.css' %}" rel="stylesheet">-->
+    <link href="{% static 'accounts/assets/css/materialize.css' %}" rel="stylesheet">
+    <!--<link href="{% static 'accounts/assets/css/bootstrap-theme.css' %}" rel="stylesheet">-->
+</head>
+<body>
+
+<div class="row hide-on-med-and-down">
+
+    <div class="z-depth-4 white rect "></div>
+
+    <div class="nav lime lighten-1 z-depth-4 col l2 m2 fixed">
+        <div class="row side">
+            <ul>
+                <li><a class="white-text center" href="{% url 'accounts:all_users_list' %}"><h5>View all users</h5></a><br></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col l10 offset-l2" style="margin-top: 200px">
+        {% if user.is_authenticated and request.user.is_superuser %}
+        This page is for admin only
+        <h1>Welcome Admin</h1>
+        <a href="{% url 'accounts:all_users_list' %}">View all users</a><br>
+        {% endif %}
+
+    </div>
+</div>
+
+<script src="{% static 'accounts/assets/js/jquery-3.2.1.min.js' %}"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{% static 'accounts/assets/js/materialize.js' %}"></script>
+<script>
+    $(document).ready(function(){
+        $('.collapsible').collapsible();
+    });
+</script>
+<!--<script src="{% static 'accounts/assets/js/custom.js' %}"></script>-->
+</body>
+</html>
+
